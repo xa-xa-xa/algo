@@ -1,0 +1,1 @@
+Collection of solutions for common algoruthmical problems in JS
