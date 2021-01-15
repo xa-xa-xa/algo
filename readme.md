@@ -1,1 +1,1 @@
-Collection of solutions for common algoruthmical problems in JS
+Collection of solutions for common algorithmic problems in JS
