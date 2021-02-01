@@ -30,10 +30,11 @@ class BST {
 }
 
 //? Find closest absolute value in a BST ?//
-const bst = new BST(1);
-bst
-  .insert(2)
+const bst = new BST(10);
+bst.insert(2)
+  .insert(23)
   .insert(3)
+  .insert(24)
   .insert(4)
   .insert(5)
   .insert(6)
@@ -50,10 +51,6 @@ bst
 // function findBstBranchSumsHelper(tree, target, closest) {
 // }
 
-//! Iterative solution:
-//* Time complexity O() on average, O() - worst case
-//* Space complexity O() on average, O() - worst case
-
 function findBstBranchSums(tree) {
   let res = [];
   helperCalcBranchSums(tree, 0, res);
@@ -64,7 +61,6 @@ function helperCalcBranchSums(node, runningSum, res) {
   if (!node) return;
   
   const newRunningSum = runningSum + node.value;
-  console.log("newRunningSum:", newRunningSum)
   if (!node.left && !node.right) {
     res.push(newRunningSum);
     return;
@@ -73,8 +69,7 @@ function helperCalcBranchSums(node, runningSum, res) {
   helperCalcBranchSums(node.left, newRunningSum, res);
   helperCalcBranchSums(node.right, newRunningSum, res);
 }
-console.log("sort:", [-3,3,2,-2,0,1].sort((a,b)=>a-b))
 
 ///* TEST *///
 // console.log(bst);
-console.log('result -> findBstBranchSums:', findBstBranchSums(bst));
+console.log('result -> findBstBranchSums:', findBstBranchSums(bst), bst);
