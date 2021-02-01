@@ -73,7 +73,6 @@ function findClosestValue(tree, target) {
     if (target < currNode.value) currNode = currNode.left;
     else if (target > currNode.value) currNode = currNode.right;
     else break;
-    console.log('closest:', closest);
   }
   return closest;
 }
