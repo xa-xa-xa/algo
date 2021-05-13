@@ -8,12 +8,12 @@
 // const s = "()"
 // Output: true
 //* Example 2:
-// const s = "()[]{}"
+const s = "()[]{}"
 // Output: true
 // *Example 3:
 // const s = "(]"
 // Output: false
-//* Example 4:
+// //* Example 4:
 // const s = "([)]"
 // Output: false
 //* Example 5:
@@ -41,46 +41,47 @@ const isValidParentheses = function (s) {
     // return stack.length === 0;
 
     //* Solution 2
-    const hash = {
-        ')': '(',
-        '}': '{',
-        ']': '[',
-    };
-    const openPar = Object.values(hash);
-    const stack = [];
+    // const hash = {
+    //     ')': '(',
+    //     '}': '{',
+    //     ']': '[',
+    // };
+    // const openPar = Object.values(hash);
+    // const stack = [];
 
-    for (par of s) {
-        if (openPar.includes(par)) {
-            stack.push(par);
-            continue;
-        }
+    // for (par of s) {
+    //     if (openPar.includes(par)) {
+    //         stack.push(par);
+    //         continue;
+    //     }
 
-        const lastInStack = stack.pop();
-        if (hash[par] && lastInStack !== hash[par]) return false;
-        stack
-    }
-    return stack.length === 0;
+    //     const lastInStack = stack.pop();
+    //     if (hash[par] && lastInStack !== hash[par]) return false;
+    //     stack
+    // }
+    // return stack.length === 0;
+
+
     //* Solution 3
-    const hash = {
-        '(': ')',
-        '{': '}',
-        '[': ']',
-    };
-
+    const map = {
+        "{": "}",
+        "[": "]",
+        "(": ")"
+    }
     const stack = [];
 
     for (par of s) {
-        if (hash[par] !== undefined) {
-            stack.push(par)
+        if (map[par] !== undefined) {
+            stack.push(par);
         } else {
-            const leftBracket = stack.pop();
-            const correctBracket = hash[leftBracket]
-            if (par !== correctBracket) {
-                return false
-            }
+            const lastPar = stack.pop();
+            const correctPar = map[lastPar];
+            if (par !== correctPar) return false;
         }
     }
-    return stack.length === 0
+    return stack.length == 0;
 };
 
 console.log(">>------->", isValidParentheses(s))
+
+
