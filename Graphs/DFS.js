@@ -14,10 +14,13 @@ class _Node {
   //------ SOLUTION ------//
   //! Recursive solution:
   //* Time complexity O(Vertices + Edges) 
-  //* Space complexity O(VVerticeser) 
+  //* Space complexity O(Vertices) 
     DFS(array) {
         array.push(this.value)
-        this.children.map(child => child.DFS(array));
+      // this.children.map(child => child.DFS(array));
+      for (let child of this.children) {
+        child.DFS(array)
+      }
         return array;
     }
 }
@@ -41,5 +44,5 @@ tree.children[1].children[1].addChild("M");
 
   
   ///* TEST *///
-  console.log('DFS ->', tree.DFS([]));
+console.log('DFS ->', tree.DFS(["root:"]));
   
