@@ -19,7 +19,7 @@
 // }
 // Solution 2 - Time O(n), 
 function maxSubarraySum(arr: number[], n: number) {
-    if (arr.length < n) return 0
+    if (arr.length < n) return 0;
     let sum = 0;
     let tempSum = 0;
     // sum first n numbers in the array
@@ -29,18 +29,40 @@ function maxSubarraySum(arr: number[], n: number) {
 
     tempSum = sum;
     for (let i = n; i < arr.length; i++) {
-        arr[i]
-        arr[i - n]
+        arr[i];
+        arr[i - n];
         tempSum = tempSum - arr[i - n] + arr[i];
-        if (sum < tempSum) sum = tempSum
+        if (sum < tempSum) sum = tempSum;
     }
     return sum;
 }
 
 
 //* Results check
-maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2) // 10
-maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 4) // 17
-maxSubarraySum([4, 2, 1, 6], 1) // 6
-maxSubarraySum([-4, -2, 1, 6, 2], 4) // 13
-maxSubarraySum([], 4) // 0
+maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2); // 10
+maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 4); // 17
+maxSubarraySum([4, 2, 1, 6], 1); // 6
+maxSubarraySum([-4, -2, 1, 6, 2], 4); // 13
+maxSubarraySum([], 4); // 0
+
+
+const throttle = (func, delay) => {
+    let lastFunc;
+    let lastRan;
+    return function () {
+        const context = this;
+        const args = arguments;
+        if (!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(function () {
+                if ((Date.now() - lastRan) >= delay) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                }
+            }, delay - (Date.now() - lastRan));
+        }
+    };
+};
